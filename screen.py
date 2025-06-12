@@ -6,6 +6,9 @@ import random
 
 pygame.init()
 
+score=0
+font=pygame.font.SysFont("Arial", 30)
+
 screen= pygame.display.set_mode((640,640))
 pygame.display.set_caption("My Fun Game")
 
@@ -20,7 +23,7 @@ rabbit=pygame.Rect(screen.get_width ()//2, screen.get_height() -60, 50, 50)
 rabbit_speed_x=0
 rabbit_speed_y=-0
 food = pygame.Rect(random.randint(0, screen.get_width()-30), -30, 30, 30)
-food_speed = 2
+food_speed = 4
 
 
 while True:
@@ -50,6 +53,8 @@ while True:
     food.y += food_speed
 
     if food.y > screen.get_height() or rabbit.colliderect(food):
+        if rabbit.colliderect(food):
+            score += 1
         food.x = random.randint(0, screen.get_width() - food.width)
         food.y = -30
 
@@ -59,6 +64,9 @@ while True:
         
     screen.blit(rabit_img, rabbit)  # Draw the rabbit image
     pygame.draw.rect(screen, red, food)
+    score_text = font.render(f"Score: {score}", True, (0, 0, 255))  # blue color
+    score_place=score_text.get_rect(topright=(screen.get_width()-10, 10))
+    screen.blit(score_text, score_place)
 
     pygame.display.flip()
     clock.tick(60)
