@@ -1,2 +1,2 @@
 # py-game
-using python develop the simple game for fun
+before use the game install the pip install pygame
