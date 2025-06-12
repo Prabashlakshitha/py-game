@@ -11,7 +11,7 @@ font=pygame.font.SysFont("Arial", 30)
 
 game_over= False
 
-screen= pygame.display.set_mode((640,640))
+screen= pygame.display.set_mode((700,700))  # Set the screen size
 pygame.display.set_caption("My Fun Game")
 
 clock=pygame.time.Clock()
