@@ -19,13 +19,13 @@ clock=pygame.time.Clock()
 red=(255,0,2)
 
 rabit_img=pygame.image.load("rabbit.png")
-rabit_img=pygame.transform.scale(rabit_img,(50,50))
+rabit_img=pygame.transform.scale(rabit_img,(30,30))
 
 rabbit=pygame.Rect(screen.get_width ()//2, screen.get_height() -60, 50, 50)
 rabbit_speed_x=0
 rabbit_speed_y=-0
 food = pygame.Rect(random.randint(0, screen.get_width()-30), -30, 30, 30)
-food_speed = 4
+food_speed = 5
 
 
 while True:
