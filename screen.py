@@ -9,6 +9,8 @@ pygame.init()
 score=0
 font=pygame.font.SysFont("Arial", 30)
 
+game_over= False
+
 screen= pygame.display.set_mode((640,640))
 pygame.display.set_caption("My Fun Game")
 
@@ -41,9 +43,15 @@ while True:
         if event.type == pygame.KEYUP:
             if event.key in [pygame.K_LEFT, pygame.K_RIGHT]:
                 rabbit_speed_x = 0
+        
+    if not game_over:
+         rabbit.x += rabbit_speed_x
+         rabbit.y += rabbit_speed_y
 
-    rabbit.x += rabbit_speed_x
-    rabbit.y += rabbit_speed_y
+
+    
+
+   
 
     if rabbit.x < 0:
         rabbit.x = 0
@@ -55,18 +63,36 @@ while True:
     if food.y > screen.get_height() or rabbit.colliderect(food):
         if rabbit.colliderect(food):
             score += 1
-        food.x = random.randint(0, screen.get_width() - food.width)
-        food.y = -30
+            
+            food.x = random.randint(0, screen.get_width() - food.width)
+            food.y = -30
+        elif food.y > screen.get_height():
+            game_over = True
+
+
+   
+
+
+     
 
 
     screen.fill((0,0 ,0 )) 
 
+    
+  
+
+
         
     screen.blit(rabit_img, rabbit)  # Draw the rabbit image
-    pygame.draw.rect(screen, red, food)
+    pygame.draw.rect(screen, red, food)#create the food rectangle and draw it
     score_text = font.render(f"Score: {score}", True, (0, 0, 255))  # blue color
-    score_place=score_text.get_rect(topright=(screen.get_width()-10, 10))
-    screen.blit(score_text, score_place)
+    score_place=score_text.get_rect(topright=(screen.get_width()-10, 10))#set the position of the score text
+    screen.blit(score_text, score_place)# draw the score text 
+    if game_over:
+            game_over_text = font.render("GAME OVER", True, (255, 255, 0))  # yellow  text
+            game_over_rect = game_over_text.get_rect(center=(screen.get_width()//2, screen.get_height()//2))#center the game over text
+            screen.blit(game_over_text, game_over_rect)#draw the game over text
+
 
     pygame.display.flip()
     clock.tick(60)
