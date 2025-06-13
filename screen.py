@@ -11,7 +11,7 @@ font=pygame.font.SysFont("Arial", 30)
 
 game_over= False
 
-screen= pygame.display.set_mode((700,700))  # Set the screen size
+screen= pygame.display.set_mode((700,700), pygame.RESIZABLE)  # Set the screen size
 pygame.display.set_caption("My Fun Game")
 
 clock=pygame.time.Clock()
@@ -33,6 +33,8 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type== pygame.VIDEORESIZE:
+            screen = pygame.display.set_mode((event.w, event.h), pygame.RESIZABLE)
             
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
