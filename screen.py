@@ -85,7 +85,7 @@ while True:
         
     screen.blit(rabit_img, rabbit)  # Draw the rabbit image
     pygame.draw.rect(screen, red, food)#create the food rectangle and draw it
-    score_text = font.render(f"Score: {score}", True, (0, 0, 255))  # blue color
+    score_text = font.render(f"Score: {score}", True, (255, 255, 255))  # blue color
     score_place=score_text.get_rect(topright=(screen.get_width()-10, 10))#set the position of the score text
     screen.blit(score_text, score_place)# draw the score text 
     if game_over:
